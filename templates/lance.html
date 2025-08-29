@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LanceDb  Tool</title>
+    <link rel="stylesheet" href="/static/lance.css">
+    <script defer src="/static/lance.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LanceDb  Tool</h1>
+            <p class="subtitle">Do LanceDb operations seamlessly</p>
+            <p>tenant id : 33d455fd-e0e2-4e28-97d9-762543f54d6f</p>
+            
+        </header>
+        <main>
+            <form method="POST" class="query-form" id="queryForm">
+                <label>tenancy id</label>
+                <input id="tenancy_id" name="tenancy_id" value="{{ tenancy_id }}">
+
+                <label>bot uuid</label>
+                <input id="bot_id" name="bot_id" value="{{ bot_id }}">
+
+                <label>table</label>
+                <select id="lance_tbl" name="lance_tbl">
+                    <option value="memory" {% if lance_tbl == "memory" %}selected{% endif %}>memory</option>
+                    <option value="embedding" {% if lance_tbl == "embedding" %}selected{% endif %}>embedding</option>
+                </select>
+
+                <label>action</label>
+                <select id="action" name="action">
+                    <option value="SELECT" {% if action == "SELECT" %}selected{% endif %}>SELECT</option>
+                    <option value="COUNT" {% if action == "COUNT" %}selected{% endif %}>COUNT LIST</option>
+                    <option value="UPDATE" {% if action == "UPDATE" %}selected{% endif %}>UPDATE</option>
+                    <option value="DELETE" {% if action == "DELETE" %}selected{% endif %}>DELETE</option>
+                    <option value="COMPACT" {% if action == "COMPACT" %}selected{% endif %}>COMPACT</option>
+                </select>
+
+                <label>query</label>
+                <textarea id="query" name="query" placeholder="Write your query here...">{{ query }}</textarea>
+                <label>password</label>
+                <input id="password" name="password" type="password" value="{{ password }}">
+
+                <div style = "display:flex;justify-content:space-evenly;align-items:center;gap:1rem">
+                    <button type="submit" id="submitButton">Submit</button>
+                    <button type="button" id="clearButton" class="clear-btn">Clear</button>
+                </div>
+
+
+            </form>
+            
+            <div id="confirmModal" class="modal">
+                <div class="modal-content">
+                    <p>Are you sure you want to execute the query?</p>
+                    <div class="modal-actions">
+                        <button id="confirmYes" class="btn-confirm">Yes</button>
+                        <button id="confirmNo" class="btn-cancel">No</button>
+                    </div>
+                </div>
+            </div>
+            {% if message %}
+                <div class="alert">
+                    <p>{{ message }}</p>
+                </div>
+            {% endif %}
+
+            {% if table %}
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                {% for col in table[0].keys() %}
+                                    <th>{{ col }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in table %}
+                                <tr>
+                                    {% for value in row.values() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

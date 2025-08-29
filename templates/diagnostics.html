@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Welcome to the Diagnostic Tool</h1>
+        <p class="lead">Select one of the following tools:</p>
+
+        <div class="list-group">
+            <a href="{{ url_for('psql') }}" class="list-group-item list-group-item-action">PostgreSQL Query Tool</a>
+            <a href="{{ url_for('lance') }}" class="list-group-item list-group-item-action">LanceDB Tool</a>
+            <a href="{{ url_for('directory') }}" class="list-group-item list-group-item-action">Lance Directory Tool</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
