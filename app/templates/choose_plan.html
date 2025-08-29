@@ -1,0 +1,54 @@
+<!-- /static/choose_plan.html -->
+<div id="choosePlanModal" class="choose-plan-modal hidden">
+  <div class="choose-plan-content">
+    <button class="close-btn" title="Close">&times;</button>
+    <section class="pricing-section">
+      <h2>Choose the plan!</h2>
+      <div class="pricing-container">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+          <div class="price"><sup>$</sup>0</div>
+          <div class="plan-duration">1 month access</div>
+          <h3 class="plan-title">Basic / Free</h3>
+          <ul class="plan-features">
+            <li>10000 Amadeus GDS queries</li>
+            <li>GPT-4o-powered simplified output</li>
+          </ul>
+          <button class="btn btn-green">Activate</button>
+        </div>
+        <!-- Silver Plan -->
+        <div class="pricing-card">
+          <div class="price"><sup>$</sup>89</div>
+          <div class="plan-duration">6 month access</div>
+          <h3 class="plan-title">Silver</h3>
+          <ul class="plan-features">
+            <li>20000 GDS queries</li>
+            <li>GPT-4o-powered simplified output</li>
+          </ul>
+          <button class="btn btn-blue">Activate</button>
+        </div>
+        <!-- Gold Plan -->
+        <div class="pricing-card">
+          <div class="price"><sup>$</sup>129</div>
+          <div class="plan-duration">12 month access</div>
+          <h3 class="plan-title">Gold</h3>
+          <ul class="plan-features">
+            <li>Unlimited GDS queries</li>
+            <li>GPT-4o-powered simplified output</li>
+          </ul>
+          <button class="btn btn-cyan">Activate</button>
+        </div>
+      </div>
+    </section>
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+      <div class="modal-content">
+        <p id="confirmationMessage">Are you sure you want to update this user's subscription?</p>
+        <div class="modal-buttons">
+          <button id="cancelBtn" class="cancel-btn">Cancel</button>
+          <button id="confirmBtn" class="confirm-btn">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

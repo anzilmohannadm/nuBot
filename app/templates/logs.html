@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NuBot - System Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logs.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="back-btn" onclick="backToDashboard()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                <span>Back to Dashboard</span>
+            </button>
+        </div>
+        
+        <div class="nav-center">
+            <div class="logo">🤖</div>
+            <h1>Chat Logs</h1>
+        </div>
+        
+        <div class="nav-right">
+            <button class="logout-btn" onclick="logout()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+                </svg>
+                <span>Logout</span>
+            </button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="filters-card">
+            <div class="filters-header">
+                <h3>Filter Logs</h3>
+                <p>Search and filter through chat logs</p>
+            </div>
+            
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="userFilter">User</label>
+                    <select id="userFilter" class="filter-select">
+                        <option value="">All Users</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" class="filter-input">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" class="filter-input">
+                </div>
+                
+                <div class="filter-group">
+                    <button onclick="applyFilter()" class="search-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-card">
+            <div class="table-header">
+                <h3>Chat Logs</h3>
+            </div>
+            
+            <div class="table-container">
+                <table class="logs-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Company</th>
+                            <th>Data</th>
+                            <th>Question</th>
+                            <th>Response</th>
+                            <th>Date & Time</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logsTableBody">
+                        <!-- Logs will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination" style="justify-content: center; gap: 20px;">
+                <button id="prevPage" onclick="prevPage()" class="pagination-btn" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Previous
+                </button>
+                
+                <button id="nextPage" onclick="nextPage()" class="pagination-btn">
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">⚠️</div>
+            <p id="modalMessage"></p>
+            <button onclick="closeModal()" class="modal-btn">Got it</button>
+        </div>
+    </div>
+    
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/logs.js') }}"></script>
+</body>
+</html>
